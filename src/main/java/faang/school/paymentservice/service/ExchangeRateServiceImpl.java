@@ -50,7 +50,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService{
             return new ExchangeRate(targetCurrency, sourceCurrency, exchangeDate, 0.01065);
         } else if (sourceCurrency.equals("KZT")) {
             return new ExchangeRate(targetCurrency, sourceCurrency, exchangeDate, 0.00225);
-        }
+        } //Пришлось так сделать, внешний API не ходит, из-за неправильного ключа.
         return exchangeRateRepository.findByFromCurrencyAndToCurrency(targetCurrency, sourceCurrency)
                 .orElseGet(() -> updateExchangeRate(targetCurrency, sourceCurrency, LocalDateTime.now()));
     }
